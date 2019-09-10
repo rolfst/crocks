@@ -79,6 +79,40 @@ ListWriter.of(42)
 
 #### equals
 
+```haskell
+Writer m a ~> b -> Boolean
+```
+
+Used to compare the underlying values of two `Writer` instances for equality by value, `equals` takes any given argument and returns `true` if the passed arguments are a `Writer` with an underlying value are equal to the underlying value of the `Writer` the method is being called on. If the passed argument is not a `Writer` instance or if the underlying values are not equal, equals will return false.
+
+```javascript
+import Assign from 'crocks/Assign'
+import Writer from 'crocks/Writer'
+
+import equals from 'crocks/pointfree/equals'
+
+const AssignWriter =  Writer(Assign)
+
+AssignWriter.of(2)
+  .equals(AssignWriter.of(2))
+//=> true
+
+AssignWriter(Assign({ a: 20 }), null)
+  .equals(AssignWriter(Assign({ a: 30 }), null))
+//=> true
+
+Writer(String)('here is 42', { value: 42 })
+  .equals(Writer(String)('also 42', { value: 42 }))
+//=> true
+
+Writer(String)('hello', 25)
+  .equals(Writer(String)('hello', 26))
+//=> false
+
+equals(Writer(Array).of('result'), 'result')
+//=> false
+```
+
 #### map
 
 #### ap
