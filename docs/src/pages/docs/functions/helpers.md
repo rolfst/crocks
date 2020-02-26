@@ -904,10 +904,10 @@ allowed. For black-listing properties, have a look at [`omit`](#omit).
 pipe :: ((a -> b), ..., (y -> z)) -> a -> z
 ```
 
-If you find yourself not able to come to terms with doing the typical
-right-to-left composition, then `crocks` provides a means to accommodate you.
-This function does the same thing as [`compose`](#compose), the only difference
-is it allows you define your flows in a left-to-right manner.
+Similar to [`compose`](#compose), `pipe` allows for the composition of
+functions, but takes its functions in a left-to-right fashion, which is the
+opposite of [`compose`](#compose). Just like [`compose`](#compose), `pipe`
+will return you a new function that represents your flow.
 
 #### pipeK
 
